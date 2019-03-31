@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 
 def sigmoid(alpha):
     """Calculate the sigmoid of alpha.

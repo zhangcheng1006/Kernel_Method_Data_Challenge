@@ -7,6 +7,8 @@ def sigmoid(alpha):
     return 1 / (1 + np.exp(-alpha))
 
 def KLR_train(X, y, kernel=None, sigma=0.15, lamda=0, iter_max=1000, tol=1e-5):
+    '''Train the Kernel Logistic Regression classifier
+    '''
     n, d = X.shape
     K = np.zeros((n, n))
     if kernel is None:
@@ -20,6 +22,8 @@ def KLR_train(X, y, kernel=None, sigma=0.15, lamda=0, iter_max=1000, tol=1e-5):
     
     alpha_0 = np.random.rand(n, 1)
     m = np.dot(K, alpha_0)
+    print(K[:10, :10])
+    print(m[:10])
     P = np.diagflat(- sigmoid(- m * y.reshape((-1, 1))))
     W = np.diagflat(sigmoid(m) * sigmoid(-m))
     z = m - np.linalg.solve(W, np.dot(P, y.reshape((-1, 1))))
@@ -42,6 +46,8 @@ def KLR_train(X, y, kernel=None, sigma=0.15, lamda=0, iter_max=1000, tol=1e-5):
     return alpha_1
 
 def KLR_predict(X, X_train, alpha, kernel=None, sigma=0.15):
+    '''Prediction by Kernel Logistic Regression
+    '''
     n = X_train.shape[0]
     m = X.shape[0]
     K = np.zeros((n, m))
@@ -57,6 +63,5 @@ def KLR_predict(X, X_train, alpha, kernel=None, sigma=0.15):
 
     pred = np.dot(K.T, alpha) >= 0
     pred = pred.astype(int)
-    # print(pred)
     return pred
 

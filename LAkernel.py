@@ -1,5 +1,7 @@
+'''Implementation of Local Alignment kernel
+'''
+
 import numpy as np
-np.seterr(all='raise')
 
 letter2id = {'A':0, 'T':1, 'G':2, 'C':3}
 
@@ -45,8 +47,4 @@ def spectral_translation(K):
 def empirical_kernel_map(K):
     return np.dot(K.T, K)
 
-# X = 'GGAGAATCATTTGAACCCGGGAGGTGGAGGTTGCCGTGAGCTGAGATTGCGCCATTGCACTCCAGCCTGGGCAACAAGAGCAAAACTCTGTCTCACAAAAC'
-# Y = 'ACCCTGCCTACACCGCGGCGGGGACAGGTGGAGGTTTCAACCCCTGTTTGGCAACCTCGGGCGCAGCCAGGCCCCGCCCAGAAATTTCCGGGACACGCCCC'
-
-# DPcompute(X, X, beta=0.2, e=11, d=1)
 
